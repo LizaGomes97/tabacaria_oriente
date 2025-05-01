@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Meu Perfil{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Minha Conta</h4>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <div class="rounded-circle bg-secondary d-flex justify-content-center align-items-center mx-auto mb-3" style="width: 100px; height: 100px;">
+                        <span class="text-white display-4">{{ user.first_name.0 }}{{ user.last_name.0 }}</span>
+                    </div>
+                    <h5>{{ user.get_full_name }}</h5>
+                    <p class="text-muted">{{ user.email }}</p>
+                </div>
+                
+                <div class="list-group">
+                    <a href="{% url 'usuarios:perfil' %}" class="list-group-item list-group-item-action active">
+                        <i class="bi bi-person-fill"></i> Meu Perfil
+                    </a>
+                    <a href="{% url 'pedidos:lista_pedidos' %}" class="list-group-item list-group-item-action">
+                        <i class="bi bi-box-seam"></i> Meus Pedidos
+                    </a>
+                    <a href="{% url 'usuarios:logout' %}" class="list-group-item list-group-item-action text-danger">
+                        <i class="bi bi-box-arrow-right"></i> Sair
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Informações do Perfil</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="id_telefone" class="form-label">Telefone</label>
+                            {{ form.telefone }}
+                            {% if form.telefone.errors %}
+                                <div class="text-danger">{{ form.telefone.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="id_endereco" class="form-label">Endereço</label>
+                        {{ form.endereco }}
+                        {% if form.endereco.errors %}
+                            <div class="text-danger">{{ form.endereco.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="id_cidade" class="form-label">Cidade</label>
+                            {{ form.cidade }}
+                            {% if form.cidade.errors %}
+                                <div class="text-danger">{{ form.cidade.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-2">
+                            <label for="id_estado" class="form-label">Estado</label>
+                            {{ form.estado }}
+                            {% if form.estado.errors %}
+                                <div class="text-danger">{{ form.estado.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="id_cep" class="form-label">CEP</label>
+                            {{ form.cep }}
+                            {% if form.cep.errors %}
+                                <div class="text-danger">{{ form.cep.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

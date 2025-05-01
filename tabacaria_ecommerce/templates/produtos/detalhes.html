@@ -21,14 +21,19 @@
             </div>
             
             {% if produto.estoque > 0 %}
-                <form action="#" method="post" class="mb-3">
+                <form action="{% url 'carrinho:carrinho_adicionar' produto.id %}" method="post" class="mb-3">
                     {% csrf_token %}
                     <div class="row g-3 align-items-center">
                         <div class="col-auto">
-                            <label for="quantidade" class="col-form-label">Quantidade</label>
+                            <label for="id_quantidade" class="col-form-label">Quantidade</label>
                         </div>
                         <div class="col-auto">
-                            <input type="number" id="quantidade" name="quantidade" min="1" max="{{ produto.estoque }}" value="1" class="form-control" style="width: 80px;">
+                            <select name="quantidade" id="id_quantidade" class="form-select" style="width: 80px;">
+                                {% for i in "123456789"|make_list %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="hidden" name="substituir" value="False">
                         </div>
                         <div class="col-auto">
                             <span class="form-text text-muted">
