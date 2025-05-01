@@ -1,0 +1,86 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Django stuff
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Ambiente virtual
+venv/
+env/
+ENV/
+
+# IDE - VSCode
+.vscode/
+.history/
+*.code-workspace
+
+# IDE - PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# IDE - outros
+.project
+.pydevproject
+.settings/
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos do Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Arquivos do Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Arquivos temporários
+*.bak
+*.swp
+*~
+*.tmp
+
+# Arquivos estáticos coletados
+/staticfiles/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Pytest
+.pytest_cache/

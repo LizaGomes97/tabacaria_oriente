@@ -1,0 +1,50 @@
+<!-- templates/produtos/detalhe.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ produto.nome }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% if produto.imagem %}{{ produto.imagem.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ produto.nome }}" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6">
+            <h1 class="mb-3">{{ produto.nome }}</h1>
+            <p class="text-muted">Categoria: <a href="{{ produto.categoria.get_absolute_url }}">{{ produto.categoria.nome }}</a></p>
+            <p class="fs-4 fw-bold">R$ {{ produto.preco }}</p>
+            <hr>
+            <div class="mb-4">
+                {{ produto.descricao|linebreaks }}
+            </div>
+            
+            {% if produto.estoque > 0 %}
+                <form action="#" method="post" class="mb-3">
+                    {% csrf_token %}
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label for="quantidade" class="col-form-label">Quantidade</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="number" id="quantidade" name="quantidade" min="1" max="{{ produto.estoque }}" value="1" class="form-control" style="width: 80px;">
+                        </div>
+                        <div class="col-auto">
+                            <span class="form-text text-muted">
+                                {{ produto.estoque }} disponíveis
+                            </span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg mt-3">
+                        <i class="bi bi-cart-plus"></i> Adicionar ao carrinho
+                    </button>
+                </form>
+            {% else %}
+                <div class="alert alert-secondary">
+                    <i class="bi bi-exclamation-triangle"></i> Produto fora de estoque
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
